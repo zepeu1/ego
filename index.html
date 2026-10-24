@@ -193,17 +193,6 @@ button { font: inherit; }
 .menu-foot { margin-top: 24px; animation: fade-rise var(--base) var(--rise) 1100ms backwards; }
 @keyframes item-reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 
-/* ── the stub behind each door ── */
-.stub__index { margin: 0; font: 400 clamp(96px, 20vw, 180px)/.9 var(--font-display); letter-spacing: .12em; color: var(--blood-text); animation: letter-rise var(--slow) var(--rise) 200ms backwards, stub-bleach 6s linear 1800ms forwards; }
-@keyframes stub-bleach { to { color: #ffffff; text-shadow: 0 0 28px rgba(244, 244, 242, .35); } }
-.stub__rule { width: min(360px, 100%); height: 1px; margin: 12px 0 18px; background: var(--blood); transform-origin: left center; animation: rule-draw var(--base) var(--wipe) 700ms backwards, rule-breath var(--linger) var(--breath) 1300ms infinite alternate; }
-.stub__label { margin: 0; font: 400 clamp(36px, 8vw, 64px)/1 var(--font-display); letter-spacing: .18em; animation: fade-rise var(--base) var(--rise) 900ms backwards; }
-.stub__caption { margin-top: 20px; min-height: 40px; animation-delay: 1200ms; }
-.stub__foot { margin-top: 40px; animation: fade-rise var(--base) var(--rise) 1800ms backwards; }
-.stub__res { position: absolute; right: var(--gutter); top: 50%; width: 220px; height: 220px; margin-top: -110px; opacity: .8; }
-.stub__res .res__ring { animation: none; opacity: .35; transform: scale(.6); border-color: var(--line-strong); }
-.stub__res .res__core { animation: none; background: var(--line-strong); box-shadow: none; }
-
 /* ── 01 · MAP: the hologram table ── */
 .scene--map { padding: 0; overflow: hidden; }
 .map { position: absolute; inset: 0; }
@@ -527,7 +516,7 @@ button { font: inherit; }
 }
 
 /* ── desktop: the registry card, the year axis, the sector preview ── */
-.dossier, .years, .menu-preview, .stub__ghost { display: none; }
+.dossier, .years, .menu-preview { display: none; }
 .hero { min-width: 0; }
 @media (min-width: 700px) and (max-width: 959px) {
   .scene--title .stack { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "hero" "dossier" "years"; row-gap: 36px; }
@@ -549,8 +538,6 @@ button { font: inherit; }
   .scene--menu .stack { display: grid; grid-template-columns: minmax(0, 640px) minmax(320px, 1fr); column-gap: 56px; align-items: stretch; }
   .menu-left { min-width: 0; }
   .menu-preview { display: flex; }
-  .stub__ghost { display: block; }
-  .stub__res { --ego-res-size: 320px; width: 320px; height: 320px; margin-top: -160px; right: calc(var(--gutter) + 40px); }
   .wv__main { max-width: 760px; }
   .bg__mark { right: -1%; top: 60%; }
 }
@@ -603,7 +590,6 @@ button { font: inherit; }
 .mini-res .res__ring:nth-child(5) { animation-delay: 1060ms; }
 .mini-res[data-state="dormant"] .res__ring { animation: none; opacity: .35; transform: scale(.6); border-color: var(--line-strong); }
 .mini-res[data-state="dormant"] .res__core { animation: none; background: var(--line-strong); box-shadow: none; }
-.stub__ghost { position: absolute; right: calc(var(--gutter) - 8px); bottom: 24px; font: 400 min(260px, 22vw)/.9 var(--font-display); letter-spacing: .04em; color: var(--ink); opacity: .05; pointer-events: none; user-select: none; }
 
 /* ── easter eggs: 開花, the three eyes, an entity signal ── */
 .bg__mark { pointer-events: auto; transition: filter var(--cut) steps(2, end), color 900ms var(--rise), opacity 900ms var(--rise), transform 1600ms var(--rise); }
@@ -765,7 +751,6 @@ button { font: inherit; }
   .enter { min-width: 0; width: 100%; }
   .enter--ghost { width: auto; }
   .menu__item { grid-template-columns: 36px 1fr auto; column-gap: 14px; padding: 12px 16px; }
-  .stub__res { display: none; }
 }
 @media (pointer: coarse) {
   .wv__navbtn, .ch__filter, .bgm-toggle, .map__panel-close, .wv__jump { min-height: 40px; }
@@ -851,10 +836,9 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
     <div class="menu-head"><span class="menu-head__mark" aria-hidden="true">E G O</span><span class="menu-head__rule" aria-hidden="true"></span><span class="menu-head__label">Select sector</span></div>
     <ul class="menu" id="menu">
       <li><button class="menu__item" type="button" data-hot data-section="MAP" style="--i:0"><span class="tick tick--tl"></span><span class="tick tick--tr"></span><span class="tick tick--bl"></span><span class="tick tick--br"></span><span class="menu__index">01</span><span class="menu__label" data-text="MAP">MAP</span><span class="menu__sub">The Federation, 2062</span><span class="menu__caret" aria-hidden="true">▸</span></button></li>
-      <li><button class="menu__item" type="button" data-hot data-section="WEBTOON" style="--i:1"><span class="tick tick--tl"></span><span class="tick tick--tr"></span><span class="tick tick--bl"></span><span class="tick tick--br"></span><span class="menu__index">02</span><span class="menu__label" data-text="WEBTOON">WEBTOON</span><span class="menu__sub">Episodes</span><span class="menu__caret" aria-hidden="true">▸</span></button></li>
-      <li><button class="menu__item" type="button" data-hot data-section="CHARACTERS" style="--i:2"><span class="tick tick--tl"></span><span class="tick tick--tr"></span><span class="tick tick--bl"></span><span class="tick tick--br"></span><span class="menu__index">03</span><span class="menu__label" data-text="CHARACTERS">CHARACTERS</span><span class="menu__sub">Registry · 33 dossiers</span><span class="menu__caret" aria-hidden="true">▸</span></button></li>
-      <li><button class="menu__item" type="button" data-hot data-section="WORLDVIEW" style="--i:3"><span class="tick tick--tl"></span><span class="tick tick--tr"></span><span class="tick tick--bl"></span><span class="tick tick--br"></span><span class="menu__index">04</span><span class="menu__label" data-text="WORLDVIEW">WORLDVIEW</span><span class="menu__sub">Factor · Ego · Bleach</span><span class="menu__caret" aria-hidden="true">▸</span></button></li>
-      <li><button class="menu__item" type="button" data-hot data-section="BGM" style="--i:4"><span class="tick tick--tl"></span><span class="tick tick--tr"></span><span class="tick tick--bl"></span><span class="tick tick--br"></span><span class="menu__index">05</span><span class="menu__label" data-text="BGM">BGM</span><span class="menu__sub">Soundtrack</span><span class="menu__caret" aria-hidden="true">▸</span></button></li>
+      <li><button class="menu__item" type="button" data-hot data-section="CHARACTERS" style="--i:1"><span class="tick tick--tl"></span><span class="tick tick--tr"></span><span class="tick tick--bl"></span><span class="tick tick--br"></span><span class="menu__index">02</span><span class="menu__label" data-text="CHARACTERS">CHARACTERS</span><span class="menu__sub">Registry · 33 dossiers</span><span class="menu__caret" aria-hidden="true">▸</span></button></li>
+      <li><button class="menu__item" type="button" data-hot data-section="WORLDVIEW" style="--i:2"><span class="tick tick--tl"></span><span class="tick tick--tr"></span><span class="tick tick--bl"></span><span class="tick tick--br"></span><span class="menu__index">03</span><span class="menu__label" data-text="WORLDVIEW">WORLDVIEW</span><span class="menu__sub">Factor · Ego · Bleach</span><span class="menu__caret" aria-hidden="true">▸</span></button></li>
+      <li><button class="menu__item" type="button" data-hot data-section="BGM" style="--i:3"><span class="tick tick--tl"></span><span class="tick tick--tr"></span><span class="tick tick--bl"></span><span class="tick tick--br"></span><span class="menu__index">04</span><span class="menu__label" data-text="BGM">BGM</span><span class="menu__sub">Soundtrack</span><span class="menu__caret" aria-hidden="true">▸</span></button></li>
     </ul>
     <div class="menu-foot"><button class="enter enter--ghost enter--back" id="btn-title" type="button" data-hot><span class="enter__label">TITLE</span><span class="enter__sub">ESC</span></button></div>
     </div>
@@ -870,26 +854,13 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
     </div>
   </section>
 
-  <!-- 3 · a closed door -->
-  <section class="scene scene--stub" id="scene-stub" hidden aria-live="polite">
-    <div class="stack">
-    <p class="stub__index" id="stub-index">01</p>
-    <span class="stub__rule" aria-hidden="true"></span>
-    <h2 class="stub__label" id="stub-label">MAP</h2>
-    <p class="caption stub__caption" id="stub-caption">SECTOR LOCKED. UNDER CONSTRUCTION.</p>
-    <div class="stub__foot"><button class="enter enter--ghost enter--back" id="btn-menu" type="button" data-hot><span class="enter__label">MENU</span><span class="enter__sub">ESC</span></button></div>
-    </div>
-    <span class="stub__ghost" id="stub-ghost" aria-hidden="true">MAP</span>
-    <div class="stub__res" aria-hidden="true"><span class="res__axis res__axis--h"></span><span class="res__axis res__axis--v"></span><span class="res__ring"></span><span class="res__ring"></span><span class="res__ring"></span><span class="res__core"></span></div>
-  </section>
-
   <!-- 3b · 03 CHARACTERS -->
   <section class="scene scene--chars" id="scene-chars" hidden aria-label="Characters">
     <div class="ch__scroll" id="ch-scroll">
       <div class="ch">
         <header class="ch__head">
           <div class="ch__title">
-            <p class="wv__kicker"><i>03</i> / CHARACTERS — 등록부</p>
+            <p class="wv__kicker"><i>02</i> / CHARACTERS — 등록부</p>
             <b aria-hidden="true">REGISTRY</b>
             <small><span id="ch-count">00 / 00</span> ON FILE <i>/</i> SELECT A DOSSIER</small>
           </div>
@@ -934,7 +905,7 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
         <p class="map__card-name" id="mc-name">SEOUL</p>
         <p class="map__card-ko" id="mc-ko">서울 — 각성자의 수도</p>
         <div class="map__panel-body" id="mc-body"></div>
-        <button class="enter enter--ghost" id="mc-more" type="button" data-hot><span class="enter__label">READ IN WORLDVIEW</span><span class="enter__sub">04 / 지역</span></button>
+        <button class="enter enter--ghost" id="mc-more" type="button" data-hot><span class="enter__label">READ IN WORLDVIEW</span><span class="enter__sub">03 / 지역</span></button>
       </aside>
       <p class="map__fallback" id="map-fallback" hidden>HOLOGRAM OFFLINE. <em>3D RENDERING IS NOT AVAILABLE IN THIS BROWSER.</em></p>
       <div class="map__foot">
@@ -951,7 +922,7 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
     <div class="stack">
     <div class="wv">
       <aside class="wv__side">
-        <p class="wv__kicker"><i>04</i> / WORLDVIEW — 2062 한일 연방</p>
+        <p class="wv__kicker"><i>03</i> / WORLDVIEW — 2062 한일 연방</p>
         <p class="wv__mark" aria-hidden="true">E G O</p>
         <ul class="wv__nav" id="wv-nav">
           <li><button class="wv__navbtn is-active" type="button" data-part="1" data-hot><em>01</em><span>개요</span></button></li>
@@ -1387,7 +1358,7 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
   <section class="scene scene--bgm" id="scene-bgm" hidden aria-label="Soundtrack">
     <div class="stack">
     <div class="player">
-      <p class="player__kicker"><i>05</i> / BGM — SOUNDTRACK 01</p>
+      <p class="player__kicker"><i>04</i> / BGM — SOUNDTRACK 01</p>
       <h2 class="player__title" aria-label="E G O">E G O</h2>
       <p class="player__sub"><span lang="ja">僕のこと</span> — MAIN THEME <i>/</i> <span id="pl-state">STANDBY</span></p>
       <canvas class="player__viz" id="viz" width="960" height="200" aria-hidden="true"></canvas>
@@ -1433,7 +1404,7 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var app = $('app'), bg = $('bg'), curtain = $('curtain'), curtainLabel = $('curtain-label');
-  var scenes = { title: $('scene-title'), menu: $('scene-menu'), stub: $('scene-stub'), chars: $('scene-chars'), map: $('scene-map'), world: $('scene-world'), bgm: $('scene-bgm') };
+  var scenes = { title: $('scene-title'), menu: $('scene-menu'), chars: $('scene-chars'), map: $('scene-map'), world: $('scene-world'), bgm: $('scene-bgm') };
   var SCENE_LABEL = { title: 'TITLE', menu: 'MENU', chars: 'CHARACTERS', map: 'MAP', world: 'WORLDVIEW', bgm: 'BGM' };
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
@@ -1488,20 +1459,18 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
       if (fill) fill();
       if (to === 'title') { scenes.title.classList.remove('is-settled'); app.classList.remove('is-boot'); }
       bleachOff();
-      if (to === 'stub') $('stub-caption').textContent = '';
       if (current === 'map' && to !== 'map') Map3D.stop();
       if (current === 'chars' && to !== 'chars') Chars.leave();
       Object.keys(scenes).forEach(function (k) { scenes[k].hidden = k !== to; });
       current = to;
       app.classList.toggle('in-world', to === 'world' || to === 'chars');
       restartAnimations(scenes[to]);
-      $('hud-tl').innerHTML = 'SYS.EGO <i>/</i> V0.1 <i>/</i> ' + (SCENE_LABEL[to] || $('stub-label').textContent);
+      $('hud-tl').innerHTML = 'SYS.EGO <i>/</i> V0.1 <i>/</i> ' + SCENE_LABEL[to];
       if (to === 'map') { Map3D.start(); }
       if (to === 'chars') { Chars.enter(); }
       if (to === 'bgm') { Player.enter(); } else { Player.leave(); }
       if (to === 'world' && !fill) { WV.show(1); }
       if (to === 'title') { titleIntro(false); }
-      if (to === 'stub') { later(function () { typeInto($('stub-caption'), [{ text: 'SECTOR LOCKED.' }, { text: 'UNDER CONSTRUCTION — COME BACK LATER.', accent: true }], { speed: 26 }); }, 1200); }
     }, 1060);
     later(function () { curtain.classList.remove('is-closed'); }, 1400);
     later(function () { busy = false; focusFirst(to); }, 1400 + 900);
@@ -1512,7 +1481,7 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
     root.querySelectorAll('*').forEach(function (n) { n.style.animation = ''; });
   }
   function focusFirst(scene) {
-    var f = scene === 'menu' ? scenes.menu.querySelector('.menu__item') : scene === 'stub' ? $('btn-menu') : scene === 'world' ? scenes.world.querySelector('.wv__navbtn.is-active') : scene === 'chars' ? scenes.chars.querySelector('.ch__filter.is-active') : scene === 'title' ? $('btn-enter') : null;
+    var f = scene === 'menu' ? scenes.menu.querySelector('.menu__item') : scene === 'world' ? scenes.world.querySelector('.wv__navbtn.is-active') : scene === 'chars' ? scenes.chars.querySelector('.ch__filter.is-active') : scene === 'title' ? $('btn-enter') : null;
     if (f) { try { f.focus({ preventScroll: true }); } catch (e) { f.focus(); } }
   }
 
@@ -1710,7 +1679,6 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
   }
   $('btn-continue').addEventListener('click', function () { enter('continue'); });
   $('btn-title').addEventListener('click', function () { transition('title', 'TITLE'); });
-  $('btn-menu').addEventListener('click', function () { transition('menu', 'MENU / SELECT SECTOR'); });
   Array.prototype.forEach.call(document.querySelectorAll('.menu__item'), function (btn) {
     btn.addEventListener('click', function () {
       var name = btn.getAttribute('data-section'), idx = btn.querySelector('.menu__index').textContent;
@@ -1718,7 +1686,6 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
       if (name === 'CHARACTERS') { transition('chars', idx + ' / CHARACTERS — REGISTRY'); return; }
       if (name === 'WORLDVIEW') { transition('world', idx + ' / WORLDVIEW — 2062'); return; }
       if (name === 'BGM') { transition('bgm', idx + ' / BGM — SOUNDTRACK 01'); return; }
-      transition('stub', idx + ' / ' + name, function () { $('stub-index').textContent = idx; $('stub-label').textContent = name; $('stub-ghost').textContent = name; });
     });
   });
   $('btn-map-menu').addEventListener('click', function () { transition('menu', 'MENU / SELECT SECTOR'); });
@@ -1927,9 +1894,9 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
       d += '<dt>성격</dt><dd><span class="ch__traits">' + c.traits.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</span></dd>';
       if (c.note) d += '<dt>비고</dt><dd>' + esc(c.note) + '</dd>';
       h += row(d + '</dl>');
-      h += row('<p class="ch__panel-link" style="--i:X"><button class="enter enter--ghost" type="button" data-hot data-read-faction><span class="enter__label">READ FACTION</span><span class="enter__sub">04 / 세력 — ' + g.en + '</span></button></p>');
+      h += row('<p class="ch__panel-link" style="--i:X"><button class="enter enter--ghost" type="button" data-hot data-read-faction><span class="enter__label">READ FACTION</span><span class="enter__sub">03 / 세력 — ' + g.en + '</span></button></p>');
       body.innerHTML = h;
-      body.querySelector('[data-read-faction]').addEventListener('click', function () { transition('world', '04 / WORLDVIEW — 세력', function () { WV.show(9); }); });
+      body.querySelector('[data-read-faction]').addEventListener('click', function () { transition('world', '03 / WORLDVIEW — 세력', function () { WV.show(9); }); });
       var list = visible(), pos = list.indexOf(c);
       $('chp-count').textContent = pad(pos + 1) + ' / ' + pad(list.length);
       Array.prototype.forEach.call(grid.querySelectorAll('.ch__card'), function (el) { el.classList.toggle('is-active', Number(el.getAttribute('data-i')) === i); });
@@ -2150,7 +2117,7 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
     gl.addEventListener('click', function (e) { if (downAt && Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 6) return; var c = pick(e.clientX, e.clientY); if (c) showCard(c); else hideCard(); });
     gl.addEventListener('pointermove', function (e) { if (drag || pinch) return; var c = pick(e.clientX, e.clientY); if (c !== hoverHead) { hoverHead = c; if (c) gl.setAttribute('data-hot', ''); else gl.removeAttribute('data-hot'); Array.prototype.forEach.call(labelsEl.children, function (n) { n.classList.toggle('is-hover', !!c && n === byName[c.name].node); }); } });
     $('mc-close').addEventListener('click', hideCard);
-    $('mc-more').addEventListener('click', function () { if (cardCity) transition('world', '04 / WORLDVIEW — 지역', function () { WV.show(cardCity.part); }); });
+    $('mc-more').addEventListener('click', function () { if (cardCity) transition('world', '03 / WORLDVIEW — 지역', function () { WV.show(cardCity.part); }); });
     /* orbit */
     var pointers = {}, drag = null, pinch = null;
     function count() { return Object.keys(pointers).length; }
@@ -2236,7 +2203,6 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
   /* ── the sector preview beside the menu ── */
   var SECTORS = {
     MAP: { status: 'online', text: 'ONLINE', desc: 'A hologram table of the Federation, 2062. Six cities, one sealed. Orbit, zoom, tap a city.' },
-    WEBTOON: { status: 'locked', text: 'LOCKED', desc: 'Episodes. Sector under construction.' },
     CHARACTERS: { status: 'online', text: 'ONLINE', desc: 'Thirty-three dossiers — the academy, FATE, the government, Anemone.' },
     WORLDVIEW: { status: 'online', text: 'ONLINE', desc: 'Factor, ego, bleach, the five powers, six cities. Ten parts.' },
     BGM: { status: 'online', text: 'ONLINE', desc: 'Soundtrack 01 — E G O. Play it, seek it, watch it resonate.' }
@@ -2285,8 +2251,6 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
       if (e.key === 'Escape') { if (Chars.isOpen()) Chars.close(); else transition('menu', 'MENU / SELECT SECTOR'); }
       else if (e.key === 'ArrowRight' && Chars.isOpen()) { Chars.step(1); }
       else if (e.key === 'ArrowLeft' && Chars.isOpen()) { Chars.step(-1); }
-    } else if (current === 'stub') {
-      if (e.key === 'Escape' || e.key === 'Backspace') { e.preventDefault(); transition('menu', 'MENU / SELECT SECTOR'); }
     } else if (current === 'map') {
       if (e.key === 'Escape') { if (!$('map-card').hidden) { $('mc-close').click(); } else { transition('menu', 'MENU / SELECT SECTOR'); } }
       else if (e.key === 'r' || e.key === 'R') { Map3D.home(); }
