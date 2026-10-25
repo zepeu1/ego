@@ -467,6 +467,20 @@ button { font: inherit; }
 .wv__axis i { font-style: normal; color: var(--blood-text); }
 .wv__axis .tail { flex-basis: 100%; font: 400 13px/22px var(--font-sans); letter-spacing: 0; color: var(--muted); }
 .wv__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 16px; }
+.wv__depts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 16px; }
+.wv__dept { --dept: var(--line-strong); padding: 14px 16px 12px; background: var(--raised); border: 1px solid var(--line); border-top: 2px solid var(--dept); }
+.wv__dept h4 { margin: 0 0 4px; font: 600 16px/24px var(--font-serif); }
+.wv__dept h4 .ja { margin-left: 8px; font: 400 12px/1 var(--font-serif); color: var(--muted); }
+.wv__dept .sum { margin: 0 0 8px; font-size: 14px; line-height: 22px; }
+.wv__dept dl { gap: 3px 12px; margin: 0; }
+.wv__dept dt { line-height: 22px; }
+.wv__dept dd { font-size: 13px; line-height: 22px; }
+.wv__dept--red { --dept: #d4142a; }
+.wv__dept--blue { --dept: #4a86c8; }
+.wv__dept--green { --dept: #4f9c6b; }
+.wv__dept--violet { --dept: #8f6cc9; }
+.wv__more { margin: 12px 0 0; }
+.wv__more .enter--ghost { padding-left: 0; }
 .wv__pair .wv__term { margin: 0; }
 .wv .sum { font-weight: 600; }
 .wv .muted-inline { font: 500 11px/16px var(--font-mono); letter-spacing: .14em; color: var(--muted); margin-left: 8px; vertical-align: 3px; }
@@ -510,6 +524,7 @@ button { font: inherit; }
   .wv__steps { grid-template-columns: 1fr 1fr; }
   .wv__eyes { grid-template-columns: 1fr; }
   .wv__pair { grid-template-columns: 1fr; }
+  .wv__depts { grid-template-columns: 1fr; }
   .wv__callout { grid-template-columns: 1fr; }
   .map__hud--tr { display: none; }
   .map__hud--bl { display: none; }
@@ -763,6 +778,7 @@ button { font: inherit; }
   .grain::before { display: none; }
 }
 </style>
+
 </head>
 <body>
 <div class="app" id="app">
@@ -866,7 +882,7 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
           </div>
           <div class="ch__filters" id="ch-filters" role="tablist" aria-label="Filter">
             <button class="ch__filter is-active" type="button" data-hot data-group="all">ALL<i data-n="all"></i></button>
-            <button class="ch__filter" type="button" data-hot data-group="academy">ACADEMY<i data-n="academy"></i></button>
+            <button class="ch__filter" type="button" data-hot data-group="academy">ARC<i data-n="academy"></i></button>
             <button class="ch__filter" type="button" data-hot data-group="fate">FATE<i data-n="fate"></i></button>
             <button class="ch__filter" type="button" data-hot data-group="gov">GOVERNMENT<i data-n="gov"></i></button>
             <button class="ch__filter" type="button" data-hot data-group="anemone">ANEMONE<i data-n="anemone"></i></button>
@@ -934,7 +950,8 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
           <li><button class="wv__navbtn" type="button" data-part="7" data-hot><em>07</em><span>안(眼)</span></button></li>
           <li><button class="wv__navbtn" type="button" data-part="8" data-hot><em>08</em><span>연방과 사회</span></button></li>
           <li><button class="wv__navbtn" type="button" data-part="9" data-hot><em>09</em><span>세력</span></button></li>
-          <li><button class="wv__navbtn" type="button" data-part="10" data-hot><em>10</em><span>지역</span></button></li>
+          <li><button class="wv__navbtn" type="button" data-part="10" data-hot><em>10</em><span>아크</span></button></li>
+          <li><button class="wv__navbtn" type="button" data-part="11" data-hot><em>11</em><span>지역</span></button></li>
         </ul>
         <button class="enter enter--ghost enter--back" id="btn-world-menu" type="button" data-hot><span class="enter__label">MENU</span><span class="enter__sub">ESC</span></button>
       </aside>
@@ -1154,6 +1171,7 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
             <dt>정기 검진</dt><dd>페이트의 백화 검사는 의무다. 승급 심사의 전제 조건이며, 검진을 피하는 것 자체가 관리 대상이 되는 사유다</dd>
             <dt>백화 관리</dt><dd>초기는 멘탈 케어를 지원하고, 후기는 격리해 감시하며, 말기는 처분을 두고 논쟁한다</dd>
             <dt>발생지 감시</dt><dd>부정적 감정이 밀집한 구역을 지정해 페이트가 감시한다. 참사 현장과 슬럼이 곧 위험 지역이다</dd>
+            <dt>각성자 교육</dt><dd>미성년 각성자는 페이트 예비 등록 상태로 일반 학교에 다니며 제어 기초만 배운다. 본격 교육은 대학 — 아크 각성자대학교 — 부터다. 각성자 교육이 성인부터 시작되는 것 자체가 혼란기의 교훈이다: "자아가 서기 전에 싸우게 하지 않는다"</dd>
           </dl>
           <h3 style="--i:3">시선</h3>
           <p style="--i:4">탈색이 보이는 순간 낙인이 찍힌다. 그래서 각성자는 백화를 숨기고, 숨기는 동안 진행은 빨라진다. 영웅이자 시한폭탄이라는 이중의 시선은 여기서 굳어졌다.</p>
@@ -1163,7 +1181,7 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
 
         <article class="wv__part" data-part="9" hidden>
           <div class="wv__head" style="--i:0"><span class="idx">09</span><h2>세력</h2></div>
-          <p class="wv__lede" style="--i:1">정부와 페이트가 각성자를 두고 다투고, 그 틈에서 아네모네가 자라며, 그 위에 이성을 가진 엔티티가 있다. 미라클 아카데미는 모든 세력이 탐내는 다음 세대다.</p>
+          <p class="wv__lede" style="--i:1">정부와 페이트가 각성자를 두고 다투고, 그 틈에서 아네모네가 자라며, 그 위에 이성을 가진 엔티티가 있다. 아크 각성자대학교는 모든 세력이 탐내는 다음 세대다.</p>
 
           <div class="wv__faction" style="--i:2">
             <div class="wv__faction-head"><span class="en">FATE</span><span class="ko">페이트</span><span class="tag">한일 연방 각성자 협회 · 본부 서울</span></div>
@@ -1172,7 +1190,7 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
               <dt>이념</dt><dd><em>"각성자는 자산이 아니라 사람이다."</em> 보호가 먼저, 관리는 그다음. 다만 처분 문제에서는 안이 갈린다 — 강경파는 조기 처분을, 온건파는 끝까지 케어를 주장한다</dd>
               <dt>조직</dt><dd>관리국은 등록, 등급 판정과 승급 심사, 정기 검진, 백화 관리를 맡고, 토벌국은 등급별로 편성된 실전 부대와 발생지 감시를 맡는다. 케어 센터는 관리국 산하 시설로, 본부와 각 지부에 하나씩 있다</dd>
               <dt>문제</dt><dd>관료화, 그리고 실적 승급이 낳은 '서류 승급'. 처분 집행도 결국 페이트가 하기에 각성자들의 애증이 깊고, "각성자가 각성자를 판정한다"는 구조는 정부의 공격 지점이다. 「색채」는 소문으로만 안다 — 실체를 잡으면 처분 정책과 정부를 함께 뒤집을 수 있지만, 잡는 순간 아네모네의 표적이 된다</dd>
-              <dt>관계</dt><dd>정부와는 권한을 두고 대척한다. 아카데미를 후원하고 인가한다. 아네모네는 최대의 적. 지성체는 연구하고, 토벌한다</dd>
+              <dt>관계</dt><dd>정부와는 권한을 두고 대척한다. 아크를 후원하고 인가한다 — 재학생은 준회원으로 등록되고, 위탁 임무 · 발생지 분담 · 합동 훈련 · 교관 파견으로 이어진다. 토벌국 간부 상당수가 아크 출신. 아네모네는 최대의 적. 지성체는 연구하고, 토벌한다</dd>
             </dl>
           </div>
 
@@ -1182,41 +1200,30 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
             <dl>
               <dt>명분</dt><dd>혼란기의 트라우마. <em>"관리하지 못한 각성자가 도시를 무너뜨렸다."</em> 국민 다수가 지지한다는 것이 이 세력의 무서운 점이다</dd>
               <dt>기관</dt><dd>국가각성자관리청, 통칭 '관리청' — 페이트의 권한을 흡수하기 위해 만든 조직으로 도쿄에 있다. 군 산하 각성자 부대 — 페이트 비소속 각성자를 고용해 독자 전력을 쌓는 중이다</dd>
-              <dt>수단</dt><dd>입법으로 등록 정보의 정부 이관, 강제 징집, 처분 권한 이양을 노리고, 교육으로 아카데미 국립화를 시도하며, 백화 사고가 날 때마다 페이트 책임론으로 여론을 움직인다</dd>
+              <dt>수단</dt><dd>입법으로 등록 정보의 정부 이관, 강제 징집, 처분 권한 이양을 노리고, 교육으로 아크 국립화와 장학생 의무 복무를 통한 졸업생 선점을 노리며, 백화 사고가 날 때마다 페이트 책임론으로 여론을 움직인다</dd>
               <dt>그림자</dt><dd>아네모네를 묵인한다는 의혹. 백화 각성자를 이용한 비공개 실험 의혹 — 「프로젝트 IDNT」의 재개, 또는 「색채」의 재현 시도라는 설</dd>
-              <dt>관계</dt><dd>페이트와 대척. 아카데미에는 국립화 압박. 아네모네를 묵인하고 이용한다는 의혹, 지성체를 연구하고 실험한다는 의혹</dd>
+              <dt>관계</dt><dd>페이트와 대척. 아크에는 국립화 압박과 포섭을 동시에 — 장학금, 관리청 인턴과 연구비, 공식 행사 초청. 아네모네를 묵인하고 이용한다는 의혹, 지성체를 연구하고 실험한다는 의혹</dd>
             </dl>
           </div>
 
           <div class="wv__faction" style="--i:4">
-            <div class="wv__faction-head"><span class="en">MIRACLE ACADEMY</span><span class="ko">미라클 아카데미</span><span class="tag">세계 최고의 각성자 육성 고등학교 · 부산 외곽</span></div>
+            <div class="wv__faction-head"><span class="en">ARC UNIVERSITY</span><span class="ko">아크 각성자대학교</span><span class="tag">세계 최고의 각성자 육성 대학 · 부산 외곽</span></div>
             <p class="sum">자아와 신념을 스스로 세우도록 청춘을 온전히 살게 하는 곳. <em>"에고는 가르칠 수 없다. 자아를 키우면 에고가 따라온다."</em></p>
             <dl>
-              <dt>개요</dt><dd>3년제. 입학은 5급 이상 각성자에 한한다. 연방 전역에서 모이고 해외 유학생도 소수 있다. 페이트의 인가를 받은 독립 재단이 운영하며, 정부는 국립화를 노려 이사회가 늘 정치의 무대가 된다</dd>
-              <dt>캠퍼스</dt><dd>부산 외곽 해안 고지대. 도심까지 전철로 20분. 안에 다 갖춰져 있지만 일부러 도시와 붙여 두었다 — <em>"청춘은 교실 밖에서 생긴다."</em></dd>
-              <dt>분위기</dt><dd>복장 자율, 동아리 · 축제 · 외출 규제 최소, 강한 학생 자치. 등급을 교내 서열로 쓰는 것은 금지되어 있다 — 그래도 학생들은 다 알고 있다</dd>
+              <dt>개요</dt><dd>4년제. 입학은 페이트에 등록된 5급 이상 각성자에 한하고, 재학생 대부분은 19~23세다. 페이트의 인가를 받은 독립 재단이 운영하며, 정부는 국립화를 노려 이사회가 늘 정치의 무대가 된다</dd>
+              <dt>네 개의 길</dt><dd>토벌학과(엔티티를 끝내는 사람들), 수호학과(민간인과 도시를 지키는 사람들), 정신의학과(정신력과 백화를 다루는, 유일하게 돌이키는 사람들), 인자공학과(인자와 에고를 측정하고 설계하는 사람들). 3학년부터는 네 학과 혼성 소대로 페이트 위탁 임무에 나간다 — 치고, 막고, 붙들고, 읽는다</dd>
+              <dt>페이트와</dt><dd>재학생은 페이트 준회원으로 등록되어 위탁 임무 실적이 승급에 반영된다. 해협 회랑의 하위 발생지 일부를 아크가 정기 담당하고, 토벌국 간부 상당수가 아크 출신이다</dd>
+              <dt>그림자</dt><dd>학생이 백화로 무너지면 은폐 압력이 생긴다. 아네모네가 연방 안에서 가장 공들이는 표적 — 포섭, 잠입, 임무 중 습격, 행사 위협. 정부의 국립화 압박과 페이트의 후원 조건 사이에서 학교 자체가 줄다리기 대상이다</dd>
+              <dt>관계</dt><dd>페이트의 후원과 인가. 정부에는 국립화 압박과 인턴 · 연구비라는 포섭을 동시에 받는다. 아네모네의 주요 표적. 지성체는 봉쇄선 관측 실습과 임무에서 조우한다</dd>
             </dl>
-            <h4>커리큘럼</h4>
-            <div class="wv__table--wrap"><table class="wv__table">
-              <thead><tr><th>구분</th><th>내용</th><th>비중</th></tr></thead>
-              <tbody>
-                <tr><td>기본 과목</td><td>국어(한 · 일 공용), 수학, 과학, 사회, 체육. 오전에만, 최소 이수</td><td>낮음</td></tr>
-                <tr class="sp"><td>각성자 과목</td><td>인자론 / 에고 이해(자기 에고의 분석과 명명) / 정신력 관리(백화 예방) / 안(眼) 기초 / 엔티티학 / 등급 · 법규 / 전술 · 팀 전투 / 개화 이론(3학년 선택)</td><td>주력</td></tr>
-                <tr><td>실습</td><td>월 1회 시뮬레이션 돔 모의 토벌 / 분기 1회 페이트 동행 실전(4급 이하 발생지) / 연 1회 교내 대항전 — 페이트가 공식 실적으로 인정한다</td><td>주기적</td></tr>
-              </tbody>
-            </table></div>
-            <dl>
-              <dt>시설</dt><dd>엔티티를 재현하는 대형 훈련장인 시뮬레이션 돔. 백화 검진이 상주하는 정신 케어 센터 — 학생들 사이에서는 '고해실'. 안 훈련장, 기숙사, 학생 자치관, 옥상 정원</dd>
-              <dt>졸업 후</dt><dd>대다수는 페이트로, 일부는 정부 기관으로 간다. 소수는 행방불명이 되는데, 그중 몇은 아네모네에서 발견된다</dd>
-              <dt>그림자</dt><dd>학생이 백화로 무너지면 학교의 명성 때문에 은폐 압력이 생긴다. 아네모네는 성적 하위권과 백화 초기 학생을 집중 포섭한다. 정부의 국립화 압박과 페이트의 후원 조건 사이에서, 학교 자체가 두 세력의 줄다리기 대상이다</dd>
-            </dl>
+            <p class="wv__more"><button class="enter enter--ghost wv__jump" type="button" data-hot data-jump="10"><span class="enter__label">READ MORE</span><span class="enter__sub">10 / 아크 각성자대학교</span></button></p>
           </div>
 
           <div class="wv__faction" style="--i:5">
             <div class="wv__faction-head"><span class="en">ANEMONE</span><span class="ko">아네모네</span><span class="tag">세계 3대 범죄집단의 하나 · 아시아 최대 · 오사카 지하, 부산항</span></div>
             <p class="sum">목적을 위해서라면 수단을 가리지 않는다. 모토는 <em>"뿌리 없이, 어디에나 핀다."</em> 아시아 전역에 분포하고 연방 안에도 깊게 침투해 있다.</p>
             <dl>
-              <dt>기원</dt><dd>세상에는 그저 범죄 집단으로 알려져 있다. 2050년대에 밀수 조직, 이레귤러 용병단, 혼란기부터 처분 대상자를 숨겨 오던 지하 조직을 차례로 흡수하며 자랐고, 흡수된 조직이 그대로 지부가 되어 지금의 구조로 굳었다. 구성원 다수가 이레귤러와 페이트 · 정부에서 버려진 사람들 — 처분 대상, 강등자, 아카데미 중퇴자 — 이라 조직 자체가 백화의 온상이다</dd>
+              <dt>기원</dt><dd>세상에는 그저 범죄 집단으로 알려져 있다. 2050년대에 밀수 조직, 이레귤러 용병단, 혼란기부터 처분 대상자를 숨겨 오던 지하 조직을 차례로 흡수하며 자랐고, 흡수된 조직이 그대로 지부가 되어 지금의 구조로 굳었다. 구성원 다수가 이레귤러와 페이트 · 정부에서 버려진 사람들 — 처분 대상, 강등자, 아크 휴학 · 제적생 — 이라 조직 자체가 백화의 온상이다</dd>
               <dt>목적</dt><dd>겉으로는 각성자 관리 체제의 해체 — "등급도 검진도 처분도 없는 세계". 수뇌부의 진짜 목적은 조직원조차 모른다</dd>
               <dt>구조</dt><dd>수뇌부는 정체도 인원도 알려지지 않아 조직원들은 그저 '위'라고 부른다. 지부는 지역별로 독립 운영되며 서로의 위치 · 인원 · 구성원을 모른다 — 하나가 무너져도 나머지는 영향이 없다. 수뇌부와 지부를 잇는 유일한 통로는 연락책이고, 연락책이 잡히면 그 지부는 통째로 버려진다. 지부는 이름 없이 번호로만 불리며(제7지부처럼), 실제 수를 숨기기 위해 빈 번호가 섞여 있다</dd>
             </dl>
@@ -1228,12 +1235,13 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
                 <tr class="sp"><td>살아있는 폭탄</td><td>백화 말기 각성자를 도시에 풀어놓는 테러</td></tr>
                 <tr><td>시설 습격</td><td>검진소, 페이트 시설</td></tr>
                 <tr><td>밀거래 · 공작</td><td>각성자 밀거래, 여론 공작</td></tr>
+                <tr><td>아크 공작</td><td>학생 포섭, 위장 잠입, 위탁 임무 중 혼성 소대 습격, 공개 행사 테러 위협</td></tr>
               </tbody>
             </table></div>
             <dl>
               <dt>의혹</dt><dd>발생지 조성과 살아있는 폭탄이 색채의 원료를 다시 얻으려는 시도라는 설. 지성체와 접촉한다는 의혹</dd>
               <dt>거점</dt><dd>오사카 지하 경제(연방 본거지로 의심된다), 부산항 밀수 루트, 아시아 각지</dd>
-              <dt>관계</dt><dd>페이트의 최대 적. 정부와는 묵인과 거래의 의혹 — 서로가 서로의 증거라, 어느 쪽도 상대를 끝까지 밀어붙일 수 없다. 아카데미 학생을 포섭한다</dd>
+              <dt>관계</dt><dd>페이트의 최대 적. 정부와는 묵인과 거래의 의혹 — 서로가 서로의 증거라, 어느 쪽도 상대를 끝까지 밀어붙일 수 없다. 아크는 연방 안에서 가장 공들이는 표적 — 포섭, 잠입, 습격</dd>
             </dl>
           </div>
 
@@ -1250,24 +1258,179 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
 
           <h3 style="--i:7">관계도 <span class="muted-inline">행의 세력이 열의 세력에게</span></h3>
           <div class="wv__table--wrap" style="--i:8"><table class="wv__table wv__matrix">
-            <thead><tr><th></th><th>페이트</th><th>정부</th><th>아카데미</th><th>아네모네</th><th>지성체</th></tr></thead>
+            <thead><tr><th></th><th>페이트</th><th>정부</th><th>아크</th><th>아네모네</th><th>지성체</th></tr></thead>
             <tbody>
               <tr><td>페이트</td><td class="self">—</td><td>권한 다툼</td><td>후원 · 인가</td><td class="hot">최대 적</td><td>연구 · 토벌</td></tr>
               <tr><td>정부</td><td>대척</td><td class="self">—</td><td>국립화 시도</td><td class="hot">묵인 의혹</td><td class="hot">실험 의혹</td></tr>
-              <tr><td>아카데미</td><td>후원 받음</td><td>국립화 압박</td><td class="self">—</td><td class="hot">포섭 대상</td><td>실습 중 조우</td></tr>
-              <tr><td>아네모네</td><td class="hot">최대 적</td><td>묵인 의혹</td><td>학생 포섭</td><td class="self">—</td><td class="hot">접촉 의혹</td></tr>
+              <tr><td>아크</td><td>후원 받음 · 합동 훈련</td><td>국립화 압박 · 인턴 · 연구비</td><td class="self">—</td><td class="hot">주요 표적</td><td>봉쇄선 관측 · 조우</td></tr>
+              <tr><td>아네모네</td><td class="hot">최대 적</td><td>묵인 의혹</td><td class="hot">포섭 · 잠입 · 습격</td><td class="self">—</td><td class="hot">접촉 의혹</td></tr>
               <tr><td>지성체</td><td>토벌 대상</td><td>연구 대상</td><td>조우</td><td class="hot">접촉 의혹</td><td class="self">—</td></tr>
             </tbody>
           </table></div>
         </article>
 
         <article class="wv__part" data-part="10" hidden>
-          <div class="wv__head" style="--i:0"><span class="idx">10</span><h2>지역</h2></div>
+          <div class="wv__head" style="--i:0"><span class="idx">10</span><h2>아크 각성자대학교<span class="ja">ARC</span></h2><span class="note">부산 외곽</span></div>
+          <p class="wv__lede" style="--i:1">세계 최고의 각성자 육성 대학. 자아와 신념을 스스로 세우도록 청춘을 온전히 살게 하는 곳이다. <em>"에고는 가르칠 수 없다. 자아를 키우면 에고가 따라온다."</em></p>
+          <dl style="--i:2">
+            <dt>개요</dt><dd>4년제. 입학은 페이트에 등록된 5급 이상 각성자에 한하고, 재학생 대부분은 19~23세다. 연방 전역에서 모이고 해외 유학생도 소수 있다. 페이트의 인가를 받은 독립 재단이 운영하며, 정부는 국립화를 노려 이사회가 늘 정치의 무대가 된다</dd>
+            <dt>입학 전</dt><dd>미성년 각성자는 페이트 '예비 등록' 상태로 일반 학교에 다니며 월 1회 검진과 제어 기초만 배운다. 실전도 승급도 없다 — "자아가 서기 전에 싸우게 하지 않는다"는 혼란기의 교훈. 그래서 아크가 첫 본격 교육이고, 신입생 대부분이 발현과 제어의 경계에 있다. 첫 각성, 첫 폭주는 신입생의 몫이다</dd>
+            <dt>캠퍼스</dt><dd>부산 외곽 해안 고지대. 도심까지 전철로 20분. 안에 다 갖춰져 있지만 일부러 도시와 붙여 두었다 — <em>"청춘은 강의실 밖에서 생긴다."</em> 학생들은 담장 밖에서 배우고, 담장 밖에서 노출된다</dd>
+            <dt>분위기</dt><dd>수강 · 외출 · 동아리 · 축제에 규제가 거의 없고 학생 자치가 강하다. 등급을 교내 서열로 쓰는 것은 금지 — 그래도 학생들은 다 알고 있다. "모르는 척하는 것이 교양"</dd>
+            <dt>교수진</dt><dd>교관 자격은 학위가 아니라 등급과 실적이다. 현역 각성자가 페이트 파견이나 초빙으로 가르치고, 직급은 교수 · 교관 · 조교로 느슨하게 나뉜다. 20대 교관이 흔해 학생과 나이 차가 적다 — 스승이라기보다 선배, 그래서 경계가 쉽게 무너진다</dd>
+          </dl>
+
+          <h3 style="--i:3">학년 체계</h3>
+          <div class="wv__table--wrap" style="--i:4"><table class="wv__table">
+            <thead><tr><th>학년</th><th>목표</th><th>내용</th></tr></thead>
+            <tbody>
+              <tr><td>1학년</td><td>발현 → 제어</td><td>학과 없이 공통 과정. 자아 탐색, 에고를 켜고 끄는 법. 학년 말에 '에고 명명'</td></tr>
+              <tr><td>2학년</td><td>제어 안정 · 개안</td><td>학과 선택과 전공 시작. 안(眼) 발현 시도</td></tr>
+              <tr><td>3학년</td><td>확립 도전</td><td>신념의 언어화. 페이트 위탁 임무 시작</td></tr>
+              <tr><td>4학년</td><td>실전 · 진로</td><td>위탁 임무와 인턴. 졸업은 곧 세력 선택</td></tr>
+            </tbody>
+          </table></div>
+
+          <h3 style="--i:5">네 개의 길 <span class="muted-inline">학과</span></h3>
+          <p style="--i:6">학과는 에고의 유형이 아니라 "인자를 무엇에 쓸 것인가"의 선택이다. 공격형 에고가 수호과에 가고 치유형이 토벌과에 가는 것도 가능하고, 그게 그 사람의 개성이 된다.</p>
+          <div class="wv__depts" style="--i:7">
+            <div class="wv__dept wv__dept--red">
+              <h4>토벌학과 <span class="ja">討伐 · 토벌과</span></h4>
+              <p class="sum">엔티티를 끝내는 사람들</p>
+              <dl><dt>모토</dt><dd>「끝내는 건 우리다」</dd><dt>거점</dt><dd>시뮬레이션 돔</dd><dt>진로</dt><dd>페이트 토벌국</dd></dl>
+            </div>
+            <div class="wv__dept wv__dept--blue">
+              <h4>수호학과 <span class="ja">守護 · 수호과</span></h4>
+              <p class="sum">민간인과 도시를 지키는 사람들</p>
+              <dl><dt>모토</dt><dd>「우리 뒤에 사람이 있다」</dd><dt>거점</dt><dd>정문 순찰소</dd><dt>진로</dt><dd>토벌국 감시 파트 · 관리청 치안</dd></dl>
+            </div>
+            <div class="wv__dept wv__dept--green">
+              <h4>정신의학과 <span class="ja">精神醫學 · 정신과</span></h4>
+              <p class="sum">정신력과 백화를 다루는, 유일하게 '돌이키는' 사람들</p>
+              <dl><dt>모토</dt><dd>「색을 지킨다」</dd><dt>거점</dt><dd>케어 센터 — 고해실</dd><dt>진로</dt><dd>관리국 케어 센터 · 검진관</dd></dl>
+            </div>
+            <div class="wv__dept wv__dept--violet">
+              <h4>인자공학과 <span class="ja">因子工學 · 인자과</span></h4>
+              <p class="sum">인자 · 에고 · 엔티티를 측정하고 설계하는 사람들</p>
+              <dl><dt>모토</dt><dd>「모든 힘에는 구조가 있다」</dd><dt>거점</dt><dd>연구동</dd><dt>진로</dt><dd>관리국 판정 · 관리청 연구직</dd></dl>
+            </div>
+          </div>
+          <dl style="--i:8">
+            <dt>선택</dt><dd>2학년 진급 때. 1학년 말 '에고 명명'을 마쳐야 지원할 수 있다 — "에고를 알기 전엔 길을 고르지 않는다"</dd>
+            <dt>조건</dt><dd>현장 학과(토벌 · 수호)는 제어, 곧 2경지 도달이 조건이다. 미도달이면 공통 과정을 1년 더 하거나 후방 학과(정신의학 · 인자공학)로 간다 — "제어 못 해서 갔다"는 편견이 여기서 생긴다</dd>
+            <dt>전과</dt><dd>재학 중 1회. 현장 학과로 옮기려면 제어 도달이 필수</dd>
+            <dt>정원</dt><dd>토벌 4 : 수호 3 : 정신의학 2 : 인자공학 1</dd>
+            <dt>표시</dt><dd>학과는 보이고 등급은 안 보인다. 실습복의 띠와 학과 깃발에 학과 색만 쓴다 — 토벌은 적, 수호는 청, 정신의학은 녹, 인자공학은 자</dd>
+          </dl>
+
+          <div class="wv__term" style="--i:9">
+            <h3>토벌학과 <span class="ja">"가장 먼저 닿고, 가장 먼저 바랜다"</span></h3>
+            <dl>
+              <dt>배우는 것</dt><dd>에고 전투 운용, 안의 전투 응용(적안 · 역안 심화), 엔티티 생태와 등급별 대응 교리, 팀 전술과 진형, 무장 운용, 3학년부터 개화 이론</dd>
+              <dt>실습</dt><dd>시뮬레이션 돔 주 1회 — 가장 잦다. 페이트 토벌국 동행 실전. 3학년부터는 위탁 토벌 임무가 주력이라 실적이 가장 빨리 쌓인다</dd>
+              <dt>학생</dt><dd>가장 많고, 가장 시끄럽고, 가장 먼저 다친다. 적안과 역안이 대부분이고 공격형 에고가 밀집한다. 서열은 등급이 아니라 발생지 출입 횟수. 흉터를 자랑하고, 고해실에 가장 안 가면서 가장 가야 하는 학과</dd>
+              <dt>그림자</dt><dd>백화 초기 발생률 1위 — 에고 과사용과 전투 트라우마. 전투력 있는 백화 초기 학생은 아네모네의 1순위 포섭 대상이다</dd>
+              <dt>관계</dt><dd>수호과와는 창과 방패 — 라이벌이자 같은 소대. 정신과에 가장 많이 실려 가고 가장 안 고마워한다. 인자과가 돔에 넣은 가상 엔티티와 매주 싸운다</dd>
+            </dl>
+          </div>
+          <div class="wv__term" style="--i:10">
+            <h3>수호학과 <span class="ja">"가장 많이 지키고, 가장 늦게 오른다"</span></h3>
+            <dl>
+              <dt>두 트랙</dt><dd>방재 — 엔티티 발생 시 대피 · 구조 · 결계 · 봉쇄선 유지. 치안 — 발생지 순찰, 이레귤러 대응, 도시 경비</dd>
+              <dt>배우는 것</dt><dd>대피 · 구조 교리, 방어 · 결계형 에고 운용, 비살상 제압(각성자를 죽이지 않고 멈추는 법 — 핵심 기술이자 가장 어려운 과목), 발생지 징후 읽기, 군중 심리와 도시 구조, 각성자 법규와 치안 권한</dd>
+              <dt>실습</dt><dd>발생지 순찰 동행, 부산 대학가 야간 순찰 — 학생 순찰조가 실제로 대학가 치안을 맡는다. 대피 훈련 지휘, 민간 재난 합동 훈련</dd>
+              <dt>학생</dt><dd>두 번째로 큰 학과. 심안 비율이 높고(몇 초 앞을 봐서 사람을 구한다) 역안도 많다(몸으로 막는다). 토벌과만큼 다치는데 '구조'는 공적으로만 잡혀 승급이 느리다 — 등급 불일치의 산실. 숫자로 말한다: 몇 급을 잡았나가 아니라 몇 명을 살렸나</dd>
+              <dt>그림자</dt><dd>보호와 통제의 경계가 얇다. 치안 트랙은 정부가 가장 탐내는 손이고, 수호과의 백화는 전투가 아니라 못 구한 숫자에서 온다. 제압 중인 이레귤러가 아는 얼굴일 때</dd>
+              <dt>관계</dt><dd>토벌과와 창과 방패. 정신과와 가장 가깝다 — 현장에서 사람을 붙드는 둘. 인자과를 현장에서 지키는 역할</dd>
+            </dl>
+          </div>
+          <div class="wv__term" style="--i:11">
+            <h3>정신의학과 <span class="ja">"색을 지키는 사람들"</span></h3>
+            <dl>
+              <dt>무엇</dt><dd>정신력과 백화를 다루는 학과. 이 세계에서 유일하게 '돌이키는' 역할 — 백화 초기를 되돌리고, 후기를 늦추고, 폭주를 멈춘다</dd>
+              <dt>배우는 것</dt><dd>정신력 역학, 백화학, 위기 개입(폭주 직전의 진정, 역안 해제 쇼크와 개화 후 탈색의 처치), 신념 상담 — 자기 신념을 말로 세우게 돕는, 확립을 돕는 사람. 검진 판정학, 처분 윤리</dd>
+              <dt>현장</dt><dd>혼성 소대의 '붙드는 사람'. 전투 중 동료의 정신력을 읽고 폭주 직전에 멈춘다. 치유 · 정신 간섭형 에고면 유리하지만 필수는 아니다 — 말로 하는 게 먼저</dd>
+              <dt>실습</dt><dd>2학년부터 케어 센터 상주 당번 — 학교 안 고해실이 곧 실습장. 페이트 관리국 검진 참관, 3학년의 격리 시설 견학(가장 힘든 실습), 혼성 소대 현장 처치</dd>
+              <dt>학생</dt><dd>심안 비율 최고. 가장 조용하고 성적은 상위권. 본인이 백화를 겪었거나 가족이 처분당한 학생이 유독 많다. 제어 미도달로 온 학생과 일부러 온 학생이 섞여 있다</dd>
+              <dt>그림자</dt><dd>치료는 없다 — 돌이킬 수 있는 건 초기뿐. "지키는 과가 아니라 배웅하는 과"라는 자조. 검진 판정이 격리와 처분의 첫 서류라, 친구의 차트를 쓰는 손이 된다. 남의 백화를 들여다보다 자기 정신력이 깎인다 — 정신과의 백화는 조용히 온다</dd>
+            </dl>
+          </div>
+          <div class="wv__term" style="--i:12">
+            <h3>인자공학과 <span class="ja">"힘의 설계도를 읽는 사람들"</span></h3>
+            <dl>
+              <dt>무엇</dt><dd>인자 · 에고 · 안 · 엔티티를 측정하고 설계하는 학과. 이론(인자학 · 에고 분류 · 안 이론)과 공학(감응 계측기, 돔의 엔티티 재현, 봉쇄 · 결계 장비, 에고와 맞물리는 무장 설계)을 모두 다룬다. 가장 작고 가장 비밀이 많다</dd>
+              <dt>배우는 것</dt><dd>인자론 심화, 에고 이론과 분류, 안의 기전과 상성, 엔티티학 — 가장 깊게, 계측 · 장비 공학, 무장 설계, 그리고 연구 윤리. 형식적인 과목이지만 이 학과에서 가장 중요한 과목이다</dd>
+              <dt>현장</dt><dd>혼성 소대의 '읽는 사람'. 엔티티 등급, 발생지의 감정 밀도, 아군의 정신력을 계측해 실시간으로 알리고 장비를 운용한다. 전투력은 낮아 소대에서 지켜지는 자리</dd>
+              <dt>실습</dt><dd>시뮬레이션 돔 운영 — 토벌과가 싸우는 가상 엔티티를 이 학과가 설계한다. 관리국 판정 참관, 발생지 계측 동행, 연구동 랩</dd>
+              <dt>학생</dt><dd>한 학년에 한 자릿수에서 십수 명. 에고가 특이하거나 전투에 안 맞는 학생, "내 안의 이게 뭔지 알고 싶은" 학생. 미개안이 가장 많고 학점 경쟁이 치열하다. 정부 장학생 비율 최고</dd>
+              <dt>그림자</dt><dd>정부 연구비가 가장 많이 들어오는 학과 — 곧 정부의 침투 통로. 아네모네는 연구 데이터를 노린다. 에고 이식 같은 금지된 질문을 가장 먼저 떠올리는 학생들. 연구동은 출입 등급이 따로 있다</dd>
+            </dl>
+          </div>
+
+          <h3 style="--i:13">학과 사이</h3>
+          <dl style="--i:14">
+            <dt>혼성 소대</dt><dd>3학년부터의 위탁 임무는 4학과 혼성 4~6인이 표준 편성 — 토벌 2, 수호 1~2, 정신의학 1, 인자공학 1. <em>"치고, 막고, 붙들고, 읽는다."</em> 인자과 인원이 모자라면 수호과가 계측을 겸한다</dd>
+            <dt>학과 대항전</dt><dd>연 1회, 학과 대표팀. 종목은 해마다 바뀌고 돔 설계는 인자과가 맡아 그 종목에서는 심판석에 앉는다. 시민 관람과 중계가 열리는 공개 경기이며 페이트가 공식 실적으로 인정한다</dd>
+            <dt>구도</dt><dd>현장(토벌 · 수호)과 후방(정신의학 · 인자공학). 힘을 쓰는 쪽(토벌 · 인자공학)과 사람을 지키는 쪽(수호 · 정신의학). 정신과와 인자과 사이에는 "백화는 사람의 문제인가 인자의 문제인가"라는 오래된 논쟁이 있다</dd>
+          </dl>
+
+          <h3 style="--i:15">교육 과정</h3>
+          <div class="wv__table--wrap" style="--i:16"><table class="wv__table">
+            <thead><tr><th>구분</th><th>내용</th><th>비중</th></tr></thead>
+            <tbody>
+              <tr><td>교양</td><td>언어(한 · 일 공용), 연방사, 각성자 법규. 최소 이수</td><td>낮음</td></tr>
+              <tr class="sp"><td>각성자 과목</td><td>인자론 / 에고 이해(자기 에고의 분석과 명명) / 정신력 관리 / 안(眼) 기초 / 엔티티학 / 전술 · 팀 전투 / 개화 이론(3학년 이상)</td><td>주력</td></tr>
+              <tr><td>실습</td><td>월 1회 시뮬레이션 돔 모의 토벌 / 분기 1회 페이트 동행 실전(1~2학년은 4급 이하 발생지, 3학년부터 상한 해제) / 3학년부터 페이트 위탁 임무와 해협 회랑 발생지 정기 분담 / 연 1회 학과 대항전</td><td>주기적</td></tr>
+            </tbody>
+          </table></div>
+
+          <h3 style="--i:17">담장 밖</h3>
+          <dl style="--i:18">
+            <dt>발생지 분담</dt><dd>해협 회랑(부산 – 후쿠오카권)의 4급 이하 발생지 일부를 아크 혼성 소대가 페이트 위탁으로 정기 담당한다. 토벌국의 인력난을 메우는 실제 전력이라, "아크가 쉬면 부산이 비는 날이 있다"</dd>
+            <dt>야간 순찰</dt><dd>수호과 순찰조가 정문 앞 대학가와 해변 구역의 밤을 맡는다. 학과 색 띠를 두른 학생이 거리에 있는 게 부산의 일상 풍경</dd>
+            <dt>공개 행사</dt><dd>학과 대항전에는 페이트와 관리청의 스카우터, 민간 후원사가 모인다. 연 1회 캠퍼스 개방 축제</dd>
+            <dt>지역 협력</dt><dd>부산 · 후쿠오카의 재난 대피 훈련에 수호과가 참여하고, 민간 장비 기업의 실증을 인자과가 맡으며, 교관들은 페이트 신입 교육과 관리청 자문을 겸한다. 해외 각성자 교육기관과는 소수 교환 학생 — 아크의 학과 체계가 해외에서 본보기로 거론된다</dd>
+          </dl>
+          <p style="--i:19">아크는 담장 안의 학교가 아니라 도시에 뿌리를 내린 기관이다. 그만큼 밖에서 당하기도 쉽다.</p>
+
+          <h3 style="--i:20">다른 세력과</h3>
+          <div class="wv__table--wrap" style="--i:21"><table class="wv__table">
+            <thead><tr><th>세력</th><th>교류</th><th>긴장</th></tr></thead>
+            <tbody>
+              <tr><td>페이트</td><td>후원과 인가, 위탁 임무, 분기 합동 훈련, 교관 파견, 졸업생 채용. 토벌국 간부 상당수가 아크 출신</td><td>선후배 라인이 페이트 내부 파벌과 겹친다 — 학교 안 인맥이 곧 페이트 정치</td></tr>
+              <tr><td>정부</td><td>장학금과 의무 복무, 관리청 인턴(수호과 치안 트랙 · 인자과), 연구비, 공식 행사의 아크 대표단 초청</td><td>국립화 압박과 포섭이 동시에 온다. 장학생은 두 쪽 모두에게 의심받는다</td></tr>
+              <tr><td>지성체</td><td>4학년과 인자과의 봉쇄 도시 봉쇄선 관측 실습 — 연 1회, 토벌국 호위. 지성체를 멀리서 처음 보는 경험</td><td>관측 중 지성체가 학생 쪽을 '알아본' 사례가 있다는 소문</td></tr>
+              <tr class="sp"><td>아네모네</td><td>교류는 없다. 다만 대학가와 항구를 공유하는 가장 가까운 적</td><td>아래</td></tr>
+            </tbody>
+          </table></div>
+
+          <h3 style="--i:22">아네모네의 표적</h3>
+          <p style="--i:23">아크는 아네모네가 연방 안에서 가장 공들이는 표적이다. 페이트 토벌국의 다음 세대가 한곳에 모여 있어 지금 흔들면 10년 뒤의 적이 줄고, 백화 초기 학생과 학교의 은폐 압력이 합쳐지면 '물감'이 가장 잘 먹히는 시장이 되며, 인자과의 데이터와 장비는 그들이 노리는 조각이다. 무엇보다 연방이 가장 아끼는 각성자들을 지키지 못한다는 메시지 — 공개 행사는 군중과 각성자가 밀집하는 날이라 발생지 조성에 최적이다.</p>
+          <dl style="--i:24">
+            <dt>포섭</dt><dd>휴학생, 백화 초기, 성적 하위권. 처분이 두려운 학생에게 '물감'을 미끼로</dd>
+            <dt>잠입</dt><dd>학생이나 조교로 위장한 조직원. 입학 심사는 등급과 등록 상태만 보기 때문에 막기 어렵다</dd>
+            <dt>습격</dt><dd>위탁 임무 중인 혼성 소대 — 페이트 전력 중 가장 약한 고리. 발생지 분담 구역이 곧 노출 지점</dd>
+            <dt>행사</dt><dd>대항전과 축제마다 테러 위협이 들어와 토벌국이 경비를 선다</dd>
+            <dt>학교의 대응</dt><dd>쉬쉬한다. 포섭과 실종 사례를 공표하지 않아 학생들은 소문으로만 안다. 매해 몇 명이 조용히 사라진다</dd>
+          </dl>
+
+          <h3 style="--i:25">등급, 시설, 그 뒤</h3>
+          <dl style="--i:26">
+            <dt>등급과 재학</dt><dd>재학생도 페이트 준회원으로 등록되어 위탁 임무 실적이 승급 심사에 반영된다. 그래서 4급 신입생부터 준특급까지 등급 폭이 넓고, 등급 비표시 원칙과 늘 충돌한다 — 승급하면 다 알게 된다</dd>
+            <dt>시설</dt><dd>엔티티를 재현하는 대형 훈련장 시뮬레이션 돔. 백화 검진이 상주하는 정신 케어 센터 — 학생들 사이에서는 '고해실'. 안 훈련장, 연구동, 기숙사, 학생회관, 옥상 정원</dd>
+            <dt>졸업 후</dt><dd>대다수는 페이트로, 일부는 정부로(장학생은 의무 복무). 소수는 행방불명이 되는데, 그중 몇은 아네모네에서 발견된다</dd>
+            <dt>그림자</dt><dd>학생이 백화로 무너지면 학교의 명성 때문에 은폐 압력이 생기고, 백화를 이유로 한 휴학은 사실상 자퇴다. 정부의 국립화 압박과 장학금의 족쇄, 페이트의 후원 조건 — 학교 자체가 두 세력의 줄다리기 대상이다</dd>
+          </dl>
+          <p style="--i:27"><button class="enter enter--ghost" id="btn-world-arc" type="button" data-hot><span class="enter__label">OPEN REGISTRY</span><span class="enter__sub">02 / ARC — 21 DOSSIERS</span></button></p>
+        </article>
+
+        <article class="wv__part" data-part="11" hidden>
+          <div class="wv__head" style="--i:0"><span class="idx">11</span><h2>지역</h2></div>
           <p class="wv__lede" style="--i:1">한국 측은 각성자의 진영이고, 일본 측은 통제의 진영이다. 두 나라를 잇는 해협 회랑이 연방의 관문이고, 혼란기에 포기된 봉쇄 도시가 연방 최대의 발생지다.</p>
           <div class="wv__pair" style="--i:2">
             <div class="wv__term">
               <h3>한국 측 <span class="ja">각성자 진영</span></h3>
-              <p>페이트 본부(서울)와 미라클 아카데미(부산)가 같은 나라에 있다. 각성자에게 숨 쉴 공간이 되는 쪽.</p>
+              <p>페이트 본부(서울)와 아크 각성자대학교(부산)가 같은 나라에 있다. 각성자에게 숨 쉴 공간이 되는 쪽.</p>
             </div>
             <div class="wv__term">
               <h3>일본 측 <span class="ja">통제 진영</span></h3>
@@ -1280,7 +1443,7 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
             <tbody>
               <tr><td>서울</td><td>각성자의 수도</td><td>페이트</td></tr>
               <tr><td>도쿄</td><td>통제의 수도</td><td>정부</td></tr>
-              <tr><td>부산</td><td>청춘과 밀수의 관문</td><td>아카데미 · 아네모네</td></tr>
+              <tr><td>부산</td><td>청춘과 밀수의 관문</td><td>아크 · 아네모네</td></tr>
               <tr><td>후쿠오카</td><td>연방의 상징</td><td>페이트 일본 지부</td></tr>
               <tr><td>오사카</td><td>화려함 아래 지하</td><td>아네모네</td></tr>
               <tr class="sp"><td>봉쇄 도시</td><td>지성체의 영토</td><td>엔티티</td></tr>
@@ -1307,11 +1470,11 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
             </dl>
           </div>
           <div class="wv__faction wv__city" style="--i:8">
-            <div class="wv__faction-head" data-city="BUSAN"><span class="en">BUSAN</span><span class="ko">부산</span><span class="tag">청춘과 밀수의 관문 · 아카데미 · 아네모네</span></div>
+            <div class="wv__faction-head" data-city="BUSAN"><span class="en">BUSAN</span><span class="ko">부산</span><span class="tag">청춘과 밀수의 관문 · 아크 · 아네모네</span></div>
             <dl>
               <dt>역할</dt><dd>해협 경제권의 심장이자 연방의 관문. 후쿠오카와 사실상 한 생활권이다</dd>
               <dt>위치</dt><dd>페이트와 같은 나라라 학생들은 페이트의 보호 아래 자유롭게 자란다. 해협만 건너면 통제 진영이라, 학생들에게는 그 대비가 첫 사회 공부가 된다</dd>
-              <dt>낮</dt><dd>외곽에 미라클 아카데미가 있어 방과 후면 학생들이 도시를 채운다. 카페, 노래방, 해변, 야시장 어디에나 학생 구역이 있다</dd>
+              <dt>낮</dt><dd>외곽에 아크 각성자대학교가 있어 정문 앞 대학가와 해변이 학생 구역이다. 자취촌, 술집, 카페, 야시장 — 학과 색 띠를 두른 학생이 거리에 있는 게 부산의 일상 풍경이다</dd>
               <dt>밤</dt><dd>항구는 아네모네의 밀수와 밀입국 루트다. 낮은 청춘, 밤은 지하</dd>
             </dl>
           </div>
@@ -1319,7 +1482,7 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
             <div class="wv__faction-head" data-city="FUKUOKA"><span class="en">FUKUOKA</span><span class="ko">후쿠오카</span><span class="tag">연방의 상징 · 페이트 일본 지부</span></div>
             <dl>
               <dt>역할</dt><dd>2041년 연방 조약이 체결된 도시. 연방의 상징적 고향</dd>
-              <dt>페이트</dt><dd>일본 지부가 있다. 도쿄를 피해 해협 쪽에 둔 일본 측 거점이며, 아카데미의 실습을 이곳이 맡는다</dd>
+              <dt>페이트</dt><dd>일본 지부가 있다. 도쿄를 피해 해협 쪽에 둔 일본 측 거점이며, 아크의 실습과 위탁 임무를 이곳이 맡는다</dd>
               <dt>시설</dt><dd>조약 기념관과 혼란기 위령 공원 — 이 세계의 역사가 전시된 곳</dd>
             </dl>
           </div>
@@ -1345,7 +1508,7 @@ REGISTRY CHECK — MENTAL 100% / BLEACH 0%
         <div class="wv__foot">
           <button class="enter enter--ghost enter--back" id="btn-wv-prev" type="button" data-hot><span class="enter__label">PREV</span><span class="enter__sub">←</span></button>
           <span class="spacer"></span>
-          <span class="count" id="wv-count">01 / 10</span>
+          <span class="count" id="wv-count">01 / 11</span>
           <span class="spacer"></span>
           <button class="enter enter--ghost" id="btn-wv-next" type="button" data-hot><span class="enter__label">NEXT</span><span class="enter__sub">→</span></button>
         </div>
@@ -1692,13 +1855,14 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
   $('btn-chars-menu').addEventListener('click', function () { transition('menu', 'MENU / SELECT SECTOR'); });
   $('btn-world-menu').addEventListener('click', function () { transition('menu', 'MENU / SELECT SECTOR'); });
   $('btn-world-map').addEventListener('click', function () { transition('map', '01 / MAP — THE FEDERATION'); });
+  $('btn-world-arc').addEventListener('click', function () { Chars.preset('academy'); transition('chars', '02 / CHARACTERS — ARC'); });
   $('btn-map-reset').addEventListener('click', function () { Map3D.home(); });
   $('btn-map-top').addEventListener('click', function () { Map3D.top(); });
   $('btn-map-spin').addEventListener('click', function () { var on = Map3D.toggleSpin(); $('map-spin-state').textContent = on ? 'ON' : 'OFF'; $('btn-map-spin').setAttribute('aria-pressed', on ? 'true' : 'false'); });
 
   /* ── 04 · WORLDVIEW: the part navigator ── */
   var WV = (function () {
-    var N = 10, cur = 1;
+    var N = 11, cur = 1;
     var parts = Array.prototype.slice.call(scenes.world.querySelectorAll('.wv__part'));
     var navs = Array.prototype.slice.call(scenes.world.querySelectorAll('.wv__navbtn'));
     function show(n) {
@@ -1707,10 +1871,11 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
       navs.forEach(function (b) { b.classList.toggle('is-active', Number(b.getAttribute('data-part')) === n); });
       $('wv-count').textContent = pad(n) + ' / ' + pad(N);
       scenes.world.scrollTop = 0;
-      if (window.matchMedia && window.matchMedia('(max-width: 900px)').matches) { var chip = navs[n - 1]; if (chip && chip.scrollIntoView) { try { chip.scrollIntoView({ inline: 'center', block: 'nearest', behavior: reduced ? 'auto' : 'smooth' }); } catch (e) {} } }
+      if (window.matchMedia && window.matchMedia('(max-width: 900px)').matches) { var chip = navs[n - 1], rail = chip && chip.closest('.wv__nav'); if (chip && rail) { var cr = chip.getBoundingClientRect(), rr = rail.getBoundingClientRect(); var left = Math.max(0, Math.min(rail.scrollWidth - rail.clientWidth, rail.scrollLeft + (cr.left - rr.left) - (rail.clientWidth - cr.width) / 2)); try { rail.scrollTo({ left: left, behavior: reduced ? 'auto' : 'smooth' }); } catch (e) { rail.scrollLeft = left; } } }
       var sw = $('wv-sweep'); sw.classList.remove('is-on'); void sw.offsetWidth; sw.classList.add('is-on');
     }
     navs.forEach(function (b) { b.addEventListener('click', function () { show(Number(b.getAttribute('data-part'))); }); });
+    Array.prototype.forEach.call(scenes.world.querySelectorAll('[data-jump]'), function (b) { b.addEventListener('click', function () { show(Number(b.getAttribute('data-jump'))); }); });
     $('btn-wv-next').addEventListener('click', function () { show(cur % N + 1); });
     $('btn-wv-prev').addEventListener('click', function () { show((cur - 2 + N) % N + 1); });
     return { show: show, next: function () { show(cur % N + 1); }, prev: function () { show((cur - 2 + N) % N + 1); } };
@@ -1718,13 +1883,13 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
 
   /* ── 03 · CHARACTERS: the registry — thirty-three dossiers ── */
   var Chars = (function () {
-    var GROUPS = { academy: { en: 'ACADEMY', ko: '아크' }, fate: { en: 'FATE', ko: '페이트' }, gov: { en: 'GOVERNMENT', ko: '정부' }, anemone: { en: 'ANEMONE', ko: '아네모네' } };
+    var GROUPS = { academy: { en: 'ARC', ko: '아크 각성자대학교' }, fate: { en: 'FATE', ko: '페이트' }, gov: { en: 'GOVERNMENT', ko: '정부' }, anemone: { en: 'ANEMONE', ko: '아네모네' } };
     var EYE = { '적안': 'red', '심안': 'gold', '역안': 'inv' };
     /* portraits: id → image path. Empty until the portraits arrive; drop them in and fill this map. */
     /* portraits live in characters/<id>.webp (3:4 card crop) and characters/<id>-w.webp (wide still for the dossier); uppercase ids are stored as u<letter> so the names survive case-insensitive filesystems */
     var PORTRAITS = {}; 'abcdefghijklmnopqrstuvwxyzABCDEFG'.split('').forEach(function (k) { PORTRAITS[k] = true; });
     var ROSTER = [
-      /* ACADEMY */
+      /* ARC */
       { id: 'F', name: '백다원', sex: '여', age: 35, group: 'academy', aff: '아크 교장', grade: '특급', stage: '합일', eye: '역안',
         ego: ['양극', '오른손은 인력, 왼손은 척력. 멀수록 약해지고, 큰 질량을 다루면 반작용이 몸으로 돌아온다'],
         bloom: ['지척천리', '오른손은 거리를 0으로, 왼손은 끝없이 늘린다. 직접 해치지는 못한다'],
@@ -1894,9 +2059,9 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
       d += '<dt>성격</dt><dd><span class="ch__traits">' + c.traits.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</span></dd>';
       if (c.note) d += '<dt>비고</dt><dd>' + esc(c.note) + '</dd>';
       h += row(d + '</dl>');
-      h += row('<p class="ch__panel-link" style="--i:X"><button class="enter enter--ghost" type="button" data-hot data-read-faction><span class="enter__label">READ FACTION</span><span class="enter__sub">03 / 세력 — ' + g.en + '</span></button></p>');
+      h += row('<p class="ch__panel-link" style="--i:X"><button class="enter enter--ghost" type="button" data-hot data-read-faction>' + (c.group === 'academy' ? '<span class="enter__label">READ ARC</span><span class="enter__sub">03 / 아크 각성자대학교</span>' : '<span class="enter__label">READ FACTION</span><span class="enter__sub">03 / 세력 — ' + g.en + '</span>') + '</button></p>');
       body.innerHTML = h;
-      body.querySelector('[data-read-faction]').addEventListener('click', function () { transition('world', '03 / WORLDVIEW — 세력', function () { WV.show(9); }); });
+      body.querySelector('[data-read-faction]').addEventListener('click', function () { var part = c.group === 'academy' ? 10 : 9; transition('world', '03 / WORLDVIEW — ' + (part === 10 ? '아크' : '세력'), function () { WV.show(part); }); });
       var list = visible(), pos = list.indexOf(c);
       $('chp-count').textContent = pad(pos + 1) + ' / ' + pad(list.length);
       Array.prototype.forEach.call(grid.querySelectorAll('.ch__card'), function (el) { el.classList.toggle('is-active', Number(el.getAttribute('data-i')) === i); });
@@ -1907,11 +2072,13 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
     $('ch-close').addEventListener('click', close);
     $('ch-prev').addEventListener('click', function () { step(-1); });
     $('ch-next').addEventListener('click', function () { step(1); });
+    var pending = null;
     function enter() {
       if (!built) build();
+      if (pending) { applyFilter(pending, true); pending = null; }
       $('ch-scroll').scrollTop = 0;
     }
-    return { enter: enter, leave: close, close: close, step: step, isOpen: function () { return !panel.hidden; } };
+    return { enter: enter, leave: close, close: close, step: step, preset: function (g) { pending = g; }, isOpen: function () { return !panel.hidden; } };
   })();
 
   /* ── 01 · MAP: the hologram table (three.js r128) ── */
@@ -1923,12 +2090,12 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
     var view = { theta: HOME.theta + 0.6, phi: HOME.phi, dist: HOME.dist * 1.9, tx: 0, tz: 0 }, goal = { theta: HOME.theta, phi: HOME.phi, dist: HOME.dist, tx: 0, tz: 0 };
     var LON0 = 131.5, LAT0 = 36.5, K = 7, COSL = Math.cos(LAT0 * Math.PI / 180);
     var CITIES = [
-      { name: 'SEOUL', lon: 126.98, lat: 37.57, kind: 'major', idx: '01', role: 'FATE HQ', ko: '서울 — 각성자의 수도', desc: '페이트 본부의 도시. 각성자 밀도가 가장 높고 가장 친화적. 맞은편 관리청 분소와의 신경전이 일상.', part: 10 },
-      { name: 'TOKYO', lon: 139.69, lat: 35.69, kind: 'major', idx: '02', role: 'GOVERNMENT · 관리청', ko: '도쿄 — 통제의 수도', desc: '연방의 행정 수도. 정부 청사, 관리청 본부, 군 각성자 부대. 각성자의 폭주에 무너진 기억이 통제 여론을 낳았다.', part: 10 },
-      { name: 'BUSAN', lon: 129.08, lat: 35.18, kind: 'major', idx: '03', role: 'ACADEMY · GATEWAY', ko: '부산 — 청춘과 밀수의 관문', desc: '해협 경제권의 심장. 외곽의 미라클 아카데미, 항구의 아네모네 밀수 루트. 낮은 청춘, 밤은 지하.', part: 10 },
-      { name: 'FUKUOKA', lon: 130.4, lat: 33.59, kind: 'major', idx: '04', role: 'FATE JAPAN · TREATY CITY', ko: '후쿠오카 — 연방의 상징', desc: '2041년 연방 조약이 체결된 도시. 도쿄를 피해 해협 쪽에 둔 페이트 일본 지부, 조약 기념관, 혼란기 위령 공원.', part: 10 },
-      { name: 'OSAKA', lon: 135.5, lat: 34.69, kind: 'major', idx: '05', role: 'ANEMONE (SUSPECTED)', ko: '오사카 — 화려함 아래 지하', desc: '번화가 아래 연방 최대의 지하 경제. 아네모네 본거지로 의심되지만 증거는 없다.', part: 10 },
-      { name: 'NAGOYA', lon: 136.91, lat: 35.18, kind: 'sealed', idx: '06', role: 'SEALED CITY — ENTITY TERRITORY', ko: '봉쇄 도시 — 지성체의 영토', desc: '혼란기에 특급 엔티티에게 함락되어 봉쇄. 연방 최대의 발생지. 출입 금지, 1급 이상 임무의 무대.', part: 10 },
+      { name: 'SEOUL', lon: 126.98, lat: 37.57, kind: 'major', idx: '01', role: 'FATE HQ', ko: '서울 — 각성자의 수도', desc: '페이트 본부의 도시. 각성자 밀도가 가장 높고 가장 친화적. 맞은편 관리청 분소와의 신경전이 일상.', part: 11 },
+      { name: 'TOKYO', lon: 139.69, lat: 35.69, kind: 'major', idx: '02', role: 'GOVERNMENT · 관리청', ko: '도쿄 — 통제의 수도', desc: '연방의 행정 수도. 정부 청사, 관리청 본부, 군 각성자 부대. 각성자의 폭주에 무너진 기억이 통제 여론을 낳았다.', part: 11 },
+      { name: 'BUSAN', lon: 129.08, lat: 35.18, kind: 'major', idx: '03', role: 'ARC · GATEWAY', ko: '부산 — 청춘과 밀수의 관문', desc: '해협 경제권의 심장. 외곽의 아크 각성자대학교, 항구의 아네모네 밀수 루트. 낮은 청춘, 밤은 지하.', part: 11 },
+      { name: 'FUKUOKA', lon: 130.4, lat: 33.59, kind: 'major', idx: '04', role: 'FATE JAPAN · TREATY CITY', ko: '후쿠오카 — 연방의 상징', desc: '2041년 연방 조약이 체결된 도시. 도쿄를 피해 해협 쪽에 둔 페이트 일본 지부, 조약 기념관, 혼란기 위령 공원.', part: 11 },
+      { name: 'OSAKA', lon: 135.5, lat: 34.69, kind: 'major', idx: '05', role: 'ANEMONE (SUSPECTED)', ko: '오사카 — 화려함 아래 지하', desc: '번화가 아래 연방 최대의 지하 경제. 아네모네 본거지로 의심되지만 증거는 없다.', part: 11 },
+      { name: 'NAGOYA', lon: 136.91, lat: 35.18, kind: 'sealed', idx: '06', role: 'SEALED CITY — ENTITY TERRITORY', ko: '봉쇄 도시 — 지성체의 영토', desc: '혼란기에 특급 엔티티에게 함락되어 봉쇄. 연방 최대의 발생지. 출입 금지, 1급 이상 임무의 무대.', part: 11 },
       { name: 'PYONGYANG', lon: 125.75, lat: 39.03, kind: 'minor' },
       { name: 'SAPPORO', lon: 141.35, lat: 43.06, kind: 'minor' }
     ];
@@ -2203,8 +2370,8 @@ var GEO={"lit":[{"name":"Japan","rings":[[[133.37,36.2],[133.33,36.17],[133.24,3
   /* ── the sector preview beside the menu ── */
   var SECTORS = {
     MAP: { status: 'online', text: 'ONLINE', desc: 'A hologram table of the Federation, 2062. Six cities, one sealed. Orbit, zoom, tap a city.' },
-    CHARACTERS: { status: 'online', text: 'ONLINE', desc: 'Thirty-three dossiers — the academy, FATE, the government, Anemone.' },
-    WORLDVIEW: { status: 'online', text: 'ONLINE', desc: 'Factor, ego, bleach, the five powers, six cities. Ten parts.' },
+    CHARACTERS: { status: 'online', text: 'ONLINE', desc: 'Thirty-three dossiers — ARC, FATE, the government, Anemone.' },
+    WORLDVIEW: { status: 'online', text: 'ONLINE', desc: 'Factor, ego, bleach, the five powers, ARC, six cities. Eleven parts.' },
     BGM: { status: 'online', text: 'ONLINE', desc: 'Soundtrack 01 — E G O. Play it, seek it, watch it resonate.' }
   };
   function previewSector(btn) {
